@@ -1,10 +1,33 @@
 'use strict';
-var firstAndPike = {
-  nameofStore: '1st and Pike',
-  minCusPerhr: 23,
-  maxCusPerhr: 65,
-  aveNumCookSale: 6.3,
-  openHours: [
+function createTable() {
+  var main = document.getElementById('main-content');
+  var tblEL = document.createElement('table');
+  var theadEL = document.createElement('thead');
+  var tbodyEL = document.createElement('tbody');
+  var tfootEL = document.createElement('tfoot');
+
+  main.appendChild(tblEL);
+  tblEL.appendChild(theadEL);
+  theadEL.appendChild(tbodyEL);
+  tbodyEL.appendChild(tfootEL);
+
+  tblEL.id = 'stores-table';
+  theadEL.id = 'table-head';
+  tbodyEL.id = 'table-body';
+  tfootEL.id = 'table-foot';
+  tblEL.className = 'tbl';
+}
+createTable();
+console.log('createTable', createTable);
+
+var stores = [];
+
+function Stores(Name,minCustomersPerHour,maxCustomersPerHour,averageCookiesSold) {
+  this.nameofStore = Name;
+  this.minCusPerhr = minCustomersPerHour;
+  this.maxCusPerhr = maxCustomersPerHour;
+  this.aveNumCookSale = averageCookiesSold;
+  this.openHours = [
     '6am',
     '7am',
     '8am',
@@ -20,264 +43,45 @@ var firstAndPike = {
     '6pm',
     '7pm',
     '8pm'
-  ],
-  randomN: function() {
+  ];
+
+  stores.push(this);
+  //this.render();
+}
+console.log(Stores);
+Stores.prototype.render = function() {
+  var theadEL = document.getElementById('table-head');
+  var tbodyEL = document.getElementById('table-body');
+  var tfootEL = document.getElementById('table-foot');
+
+  function randomN() {
     var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) + this.minCusPerhr
-    );
+      Math.random() * (this.maxCusPerhr - this.minCusPerhr) +
+      this.minCusPerhr);
     return Math.floor(ranNum * this.aveNumCookSale);
-  },
-
-  render() {
-    var container = document.createElement('section');
-    var NameStore = document.createElement('h3');
-    var salesList = document.createElement('ul');
-
-    NameStore.textContent = this.nameofStore;
-    var totalCookies = 0;
-    for (var i = 0; i < this.openHours.length; i++) {
-      var ret = this.randomN();
-      totalCookies += ret;
-      var txtOut = document.createElement('li');
-      txtOut.textContent = `${this.openHours[i]}: ${ret} cookies`;
-      salesList.appendChild(txtOut);
-    }
-    var totaltxt = document.createElement('li');
-    totaltxt.textContent = `Total: ${totalCookies} cookies`;
-    salesList.appendChild(totaltxt);
-
-    container.appendChild(NameStore);
-    container.appendChild(salesList);
-
-    var main = document.getElementById('main-content');
-    main.appendChild(container);
   }
-};
-firstAndPike.render();
-
-var seaTac = {
-  nameofStore: 'Seatac Airport',
-  minCusPerhr: 3,
-  maxCusPerhr: 24,
-  aveNumCookSale: 1.2,
-  openHours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-    '8pm'
-  ],
-  randomN: function() {
-    var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) + this.minCusPerhr
-    );
-    return Math.floor(ranNum * this.aveNumCookSale);
-  },
-
-  render() {
-    var container = document.createElement('section');
-    var NameStore = document.createElement('h3');
-    var salesList = document.createElement('ul');
-
-    NameStore.textContent = this.nameofStore;
-    var totalCookies = 0;
-    for (var i = 0; i < this.openHours.length; i++) {
-      var ret = this.randomN();
-      totalCookies += ret;
-      var txtOut = document.createElement('li');
-      txtOut.textContent = `${this.openHours[i]}: ${ret} cookies`;
-      salesList.appendChild(txtOut);
-    }
-    var totaltxt = document.createElement('li');
-    totaltxt.textContent = `Total: ${totalCookies} cookies`;
-    salesList.appendChild(totaltxt);
-
-    container.appendChild(NameStore);
-    container.appendChild(salesList);
-
-    var main = document.getElementById('main-content');
-    main.appendChild(container);
+  console.log('something',randomN);
+  var totalCookies = 0;
+  for (var i = 0; i < this.openHours.length; i++) {
+    var ret = this.randomN;
+    totalCookies += ret;
+    var thEL = document.createElement('th');
+    thEL.textContent = this.openHours[i];
+    theadEL.appendChild(thEL);
   }
+
 };
-seaTac.render();
 
-var seattleCenter = {
-  nameofStore: 'Seattle Center',
-  minCusPerhr: 11,
-  maxCusPerhr: 38,
-  aveNumCookSale: 3.7,
-  openHours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-    '8pm'
-  ],
-  randomN: function() {
-    var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) + this.minCusPerhr
-    );
-    return Math.floor(ranNum * this.aveNumCookSale);
-  },
-
-  render() {
-    var container = document.createElement('section');
-    var NameStore = document.createElement('h3');
-    var salesList = document.createElement('ul');
-
-    NameStore.textContent = this.nameofStore;
-    var totalCookies = 0;
-    for (var i = 0; i < this.openHours.length; i++) {
-      var ret = this.randomN();
-      totalCookies += ret;
-      var txtOut = document.createElement('li');
-      txtOut.textContent = `${this.openHours[i]}: ${ret} cookies`;
-      salesList.appendChild(txtOut);
-    }
-    var totaltxt = document.createElement('li');
-    totaltxt.textContent = `Total: ${totalCookies} cookies`;
-    salesList.appendChild(totaltxt);
-
-    container.appendChild(NameStore);
-    container.appendChild(salesList);
-
-    var main = document.getElementById('main-content');
-    main.appendChild(container);
-  }
-};
-seattleCenter.render();
-
-var capHill = {
-  nameofStore: 'Capital Hill',
-  minCusPerhr: 20,
-  maxCusPerhr: 38,
-  aveNumCookSale: 2.3,
-  openHours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-    '8pm'
-  ],
-  randomN: function() {
-    var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) + this.minCusPerhr
-    );
-    return Math.floor(ranNum * this.aveNumCookSale);
-  },
-
-  render() {
-    var container = document.createElement('section');
-    var NameStore = document.createElement('h3');
-    var salesList = document.createElement('ul');
-
-    NameStore.textContent = this.nameofStore;
-    var totalCookies = 0;
-    for (var i = 0; i < this.openHours.length; i++) {
-      var ret = this.randomN();
-      totalCookies += ret;
-      var txtOut = document.createElement('li');
-      txtOut.textContent = `${this.openHours[i]}: ${ret} cookies`;
-      salesList.appendChild(txtOut);
-    }
-    var totaltxt = document.createElement('li');
-    totaltxt.textContent = `Total: ${totalCookies} cookies`;
-    salesList.appendChild(totaltxt);
-
-    container.appendChild(NameStore);
-    container.appendChild(salesList);
-
-    var main = document.getElementById('main-content');
-    main.appendChild(container);
-  }
-};
-capHill.render();
-
-var alki = {
-  nameofStore: 'Alki',
-  minCusPerhr: 2,
-  maxCusPerhr: 16,
-  aveNumCookSale: 4.6,
-  openHours: [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-    '8pm'
-  ],
-  randomN: function() {
-    var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) + this.minCusPerhr
-    );
-    return Math.floor(ranNum * this.aveNumCookSale);
-  },
-
-  render() {
-    var container = document.createElement('section');
-    var NameStore = document.createElement('h3');
-    var salesList = document.createElement('ul');
-
-    NameStore.textContent = this.nameofStore;
-    var totalCookies = 0;
-    for (var i = 0; i < this.openHours.length; i++) {
-      var ret = this.randomN();
-      totalCookies += ret;
-      var txtOut = document.createElement('li');
-      txtOut.textContent = `${this.openHours[i]}: ${ret} cookies`;
-      salesList.appendChild(txtOut);
-    }
-    var totaltxt = document.createElement('li');
-    totaltxt.textContent = `Total: ${totalCookies} cookies`;
-    salesList.appendChild(totaltxt);
-
-    container.appendChild(NameStore);
-    container.appendChild(salesList);
-
-    var main = document.getElementById('main-content');
-    main.appendChild(container);
-  }
-};
-alki.render();
+Stores.prototype.render();
 
 
+//Stores.prototype.loopThro = function() {
+//var totalCookies = 0;
 
+//}
+
+
+new Stores('1st and Pike', 23, 65, 6.3);
+//new Stores('seaTac', 3, 24, 1.2);
+//new Stores('Seattle Center', 11, 38, 3.7);
+//new Stores('Capitol Hill', 20, 38, 2.3);
