@@ -21,12 +21,22 @@ createTable();
 console.log('createTable', createTable);
 
 var stores = [];
-
+console.log('stores', stores);
 function Stores(Name,minCustomersPerHour,maxCustomersPerHour,averageCookiesSold) {
   this.nameofStore = Name;
   this.minCusPerhr = minCustomersPerHour;
   this.maxCusPerhr = maxCustomersPerHour;
   this.aveNumCookSale = averageCookiesSold;
+
+  stores.push(this);
+  this.render();
+}
+console.log(Stores);
+Stores.prototype.render = function() {
+  var theadEL = document.getElementById('table-head');
+  var tbodyEL = document.getElementById('table-body');
+  var tfootEL = document.getElementById('table-foot');
+
   this.openHours = [
     '6am',
     '7am',
@@ -44,16 +54,6 @@ function Stores(Name,minCustomersPerHour,maxCustomersPerHour,averageCookiesSold)
     '7pm',
     '8pm'
   ];
-
-  stores.push(this);
-  //this.render();
-}
-console.log(Stores);
-Stores.prototype.render = function() {
-  var theadEL = document.getElementById('table-head');
-  var tbodyEL = document.getElementById('table-body');
-  var tfootEL = document.getElementById('table-foot');
-
   function randomN() {
     var ranNum = Math.floor(
       Math.random() * (this.maxCusPerhr - this.minCusPerhr) +
@@ -61,6 +61,12 @@ Stores.prototype.render = function() {
     return Math.floor(ranNum * this.aveNumCookSale);
   }
   console.log('something',randomN);
+
+  for (var r =0; r < stores; r++) {
+    var bodyrowEL = document.createElement('tr');
+    tbodyEL.appendChild(bodyrowEL);
+  }
+  
   var totalCookies = 0;
   for (var i = 0; i < this.openHours.length; i++) {
     var ret = this.randomN;
@@ -68,20 +74,15 @@ Stores.prototype.render = function() {
     var thEL = document.createElement('th');
     thEL.textContent = this.openHours[i];
     theadEL.appendChild(thEL);
+    var tdEL = document.createElement('td');
+    tdEL.textContent = ret;
   }
-
+  bodyrowEL.appendChild(tdEL);
 };
 
 Stores.prototype.render();
 
-
-//Stores.prototype.loopThro = function() {
-//var totalCookies = 0;
-
-//}
-
-
 new Stores('1st and Pike', 23, 65, 6.3);
-//new Stores('seaTac', 3, 24, 1.2);
-//new Stores('Seattle Center', 11, 38, 3.7);
-//new Stores('Capitol Hill', 20, 38, 2.3);
+new Stores('seaTac', 3, 24, 1.2);
+new Stores('Seattle Center', 11, 38, 3.7);
+new Stores('Capitol Hill', 20, 38, 2.3);
