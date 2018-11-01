@@ -1,24 +1,26 @@
-html {
+header {
+    height: 500px;
     background: url(family.jpg)  no-repeat center center fixed;
     background-size: cover;
-    background-blend-mode: color-burn 15%;
+   
 }
 
 body {
-    
+    background-color: blanchedalmond;
     
 }
 
 h1 {
     text-align: center;
     font-size: 36;
+    color: red;
 }
 main {
     font-style: bold;
         width:70%; 
         margin-left:25%;
         margin-right:5%;
-        margin-top: 25%;
+        margin-top: 1%;
       }
 }
 }
@@ -26,6 +28,6 @@ table, th, td {
   border: 3px solid black;
   text-align: center;
 }
-img {
-
+footer {
+   
 }
