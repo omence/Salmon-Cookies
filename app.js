@@ -17,67 +17,77 @@ function createTable() {
   tfootEL.id = 'table-foot';
   tblEL.className = 'tbl';
 }
-createTable();
 console.log('createTable', createTable);
+var openHours = [
+  '6am',
+  '7am',
+  '8am',
+  '9am',
+  '10am',
+  '11am',
+  '12pm',
+  '1pm',
+  '2pm',
+  '3pm',
+  '4pm',
+  '5pm',
+  '6pm',
+  '7pm',
+  '8pm'
+];
 
 var stores = [];
-console.log('stores', stores);
-function Stores(Name,minCustomersPerHour,maxCustomersPerHour,averageCookiesSold) {
-  this.nameofStore = Name;
-  this.minCusPerhr = minCustomersPerHour;
-  this.maxCusPerhr = maxCustomersPerHour;
-  this.aveNumCookSale = averageCookiesSold;
 
-  stores.push(this);
+function Stores(Name, minCustomersPerHour, maxCustomersPerHour, averageCookiesSold) {
+  this.Name = Name;
+  this.minCustomersPerHour = minCustomersPerHour;
+  this.maxCustomersPerHour = maxCustomersPerHour;
+  this.averageCookiesSold = averageCookiesSold;
+  //this.cookiesPerHr = [];
+  //this.avarageNumPeo = [];
+  //this.hoursOpen = openHours;
+  //this.totalcookiesPerday = 0;
+
+  Stores.push(this);
   this.render();
+
+  this.randomcusPerHourGen = function() {
+    for (var i = 0; i < openHours.length; i++) {
+      var ranNum = Math.floor(
+        Math.random() * (this.maxCustomersPerHour - this.minCustomersPerHour) + this.minCustomersPerHour);
+      return Math.floor(ranNum * this.aveNumCookSale);
+    }
+  };
 }
-console.log(Stores);
 Stores.prototype.render = function() {
-  var theadEL = document.getElementById('table-head');
+  var tblEL = document.getElementById('Stores-table');
   var tbodyEL = document.getElementById('table-body');
   var tfootEL = document.getElementById('table-foot');
+  var theadEL = document.getElementById('table-head');
+  var rowEL = document.createElement('tr');
 
-  this.openHours = [
-    '6am',
-    '7am',
-    '8am',
-    '9am',
-    '10am',
-    '11am',
-    '12pm',
-    '1pm',
-    '2pm',
-    '3pm',
-    '4pm',
-    '5pm',
-    '6pm',
-    '7pm',
-    '8pm'
-  ];
-  function randomN() {
-    var ranNum = Math.floor(
-      Math.random() * (this.maxCusPerhr - this.minCusPerhr) +
-      this.minCusPerhr);
-    return Math.floor(ranNum * this.aveNumCookSale);
-  }
-  console.log('something',randomN);
+  // for (var i = 0; i < openHours.length; i++) {
+  // var tabHead = document.createElement('td');
+  // tabHead.textContent = openHours;
+  // headRow.appendChild(tabHead);
+  // theadEL.appendChild(headRow);
 
-  for (var r =0; r < stores; r++) {
-    var bodyrowEL = document.createElement('tr');
-    tbodyEL.appendChild(bodyrowEL);
-  }
-  
-  var totalCookies = 0;
-  for (var i = 0; i < this.openHours.length; i++) {
-    var ret = this.randomN;
-    totalCookies += ret;
-    var thEL = document.createElement('th');
-    thEL.textContent = this.openHours[i];
-    theadEL.appendChild(thEL);
-    var tdEL = document.createElement('td');
-    tdEL.textContent = ret;
-  }
-  bodyrowEL.appendChild(tdEL);
+  // var rowHead = document.createElement('th');
+  // rowHead.textContent = this.nameofStore;
+  // rowEL.appendChild(rowHead);
+  // tbodyEL.appendChild(rowEL);
+  // theadEL.appendChild(tbodyEL);
+
+  // for (var i = 0; i < openHours.length; i++) {
+  //   var ret = randomN;
+  //   totalCookies += ret;
+  //   var thEL = document.createElement('th');
+  //   thEL.textContent = openHours[i];
+  //   tbodyEL.appendChild(thEL);
+  //   var tdEL = document.createElement('td');
+  //   tdEL.textContent = ret;
+  // }
+//   bodyrowEL.appendChild(tdEL);
 };
 
 Stores.prototype.render();
