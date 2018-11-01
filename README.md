@@ -1,1 +1,2 @@
 # Salmon-Cookies
+I rewrote my entire code based on the code reveiw example.  I changed the names of my variable to match the example to avoid confusion.  I can on demand explain anything in the example to demonstrate my understanding, with the exception of some of the stuff about getting the footer to render. 
