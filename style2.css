@@ -1,15 +1,51 @@
+body {
+    
+}
+
 header {
    
 }
-
 h1 {
     text-align: center;
     font-size: 36;
     color: red;
 }
-body {
-    background-color: 
-}
 #one {
-align-content: center;
+    height:40px;
+    width:150px;
+    margin-left: 300px;
+}
+#text {
+    margin-top: 230px;
+}
+#img2 {
+height: 30px;
+width: auto;
+}
+#img3 {
+    height: 50px;
+    width: auto;
+}
+#img4 {
+    height: 100px;
+    width: auto;
+}
+#img5 {
+    height: 50px;
+    width: auto;
+}
+#img6 {
+    height: 50px;
+    width: auto;
+}
+.pics{
+    display: inline-block;
+    vertical-align: right;
+    margin-left: 180px;
+}
+.foot{
+    display: inline-block;
+    vertical-align: right;
+    margin-left: 120px;
+    margin-top: 75px;
 }
